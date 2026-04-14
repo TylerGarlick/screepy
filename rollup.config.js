@@ -1,9 +1,5 @@
 "use strict";
 
-const clear = require('rollup-plugin-clear');
-const resolve = require('@rollup/plugin-node-resolve');
-const commonjs = require('@rollup/plugin-commonjs');
-const typescript = require('@rollup/plugin-typescript');
 const screeps = require('rollup-plugin-screeps');
 
 let cfg;
@@ -15,22 +11,16 @@ if (!dest) {
 }
 
 module.exports = {
-  input: "src/main.ts",
+  input: "dist/main.js",  // Bun transpiles TypeScript to JS
   output: {
-    file: "dist/main.js",
+    file: "dist/main.screeps.js",  // Final bundled file for Screeps
     format: "cjs",
     sourcemap: true
   },
 
   plugins: [
-    clear({ targets: ["dist"] }),
-    typescript({
-      tsconfig: "./tsconfig.json"
-    }),
-    resolve({
-      extensions: ['.ts', '.js']
-    }),
-    commonjs(),
+    // No TypeScript plugin needed - Bun handles transpilation
+    // No clear plugin - Bun already outputs fresh files
     screeps({config: cfg, dryRun: cfg == null})
   ]
 }

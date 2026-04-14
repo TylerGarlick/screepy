@@ -125,7 +125,7 @@ export class RepairerRole {
 
     // Try spawn
     const spawns = this.creep.room.find(FIND_MY_SPAWNS, {
-      filter: (s: Structure) => s.energy > 0
+      filter: (s: Structure) => (s as StructureSpawn).energy > 0
     });
 
     if (spawns.length > 0) {

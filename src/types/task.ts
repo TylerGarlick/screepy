@@ -1,4 +1,8 @@
 // Task queue system for mature creep management
+import { Role, TaskType } from './role';
+
+// Re-export for convenience
+export { TaskType };
 
 export interface Task {
   id: string;

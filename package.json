@@ -6,16 +6,17 @@
   "types": "src/types.ts",
   "scripts": {
     "lint": "eslint \"src/**/*.ts\"",
-    "build": "rollup -c",
-    "push-main": "rollup -c --environment DEST:main",
-    "push-pserver": "rollup -c --environment DEST:pserver",
-    "push-sim": "rollup -c --environment DEST:sim",
+    "transpile": "bun build src/main.ts --outdir dist --target=node --external \"*\" --outfile dist/main.bundle.js",
+    "build": "npm run transpile && rollup -c",
+    "push-main": "npm run transpile && rollup -c --environment DEST:main",
+    "push-pserver": "npm run transpile && rollup -c --environment DEST:pserver",
+    "push-sim": "npm run transpile && rollup -c --environment DEST:sim",
     "test": "npx jest",
     "test:watch": "npx jest --watchAll",
     "test-integration": "echo 'See docs/in-depth/testing.md for instructions on enabling integration tests'",
-    "watch-main": "rollup -cw --environment DEST:main",
-    "watch-pserver": "rollup -cw --environment DEST:pserver",
-    "watch-sim": "rollup -cw --environment DEST:sim"
+    "watch-main": "npm run transpile && rollup -cw --environment DEST:main",
+    "watch-pserver": "npm run transpile && rollup -cw --environment DEST:pserver",
+    "watch-sim": "npm run transpile && rollup -cw --environment DEST:sim"
   },
   "repository": {
     "type": "git",

@@ -121,9 +121,11 @@ export class HaulerRole {
     const storage = this.creep.room.storage;
     const controller = this.creep.room.controller;
     
-    let dropoff: Structure | StructureController | null = storage;
+    let dropoff: Structure | StructureController | null = storage || null;
     
-    if (!dropoff || dropoff.store.getFreeCapacity(RESOURCE_ENERGY) === 0) {
+    if (!dropoff && controller) {
+      dropoff = controller;
+    } else if (dropoff && 'store' in dropoff && dropoff.store.getFreeCapacity(RESOURCE_ENERGY) === 0 && controller) {
       dropoff = controller;
     }
 

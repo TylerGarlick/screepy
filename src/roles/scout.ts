@@ -2,6 +2,7 @@
 // Priority: Low - provides strategic information
 
 import { CreepMemory } from '../types/memory';
+import { ExpansionTarget } from '../types/task';
 
 export class ScoutRole {
   private creep: Creep;
@@ -114,7 +115,7 @@ export class ScoutRole {
       }
       
       // Check if this room should be an expansion target
-      const existing = Memory.colony.expansionTargets.find(t => t.roomName === this.creep.room.name);
+      const existing = Memory.colony.expansionTargets.find((t: ExpansionTarget) => t.roomName === this.creep.room.name);
       
       if (!existing && sources.length >= 2) {
         Memory.colony.expansionTargets.push({

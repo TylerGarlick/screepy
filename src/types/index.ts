@@ -1,5 +1,4 @@
 export * from './enums'
 export * from './creep'
-export * from './memory'
-export * from './role'
+export { CreepMemory, Memory } from './memory'
 export * from './task'

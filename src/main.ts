@@ -2,7 +2,6 @@ import { ErrorMapper } from './utils/ErrorMapper'
 import { RoleRegistry } from './roles'
 import { TaskManager } from './managers/taskManager'
 import { SpawnManager } from './managers/spawnManager'
-import { Memory } from './types/memory'
 
 // Initialize memory if needed
 function initializeMemory(): void {
